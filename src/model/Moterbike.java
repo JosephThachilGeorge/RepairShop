@@ -1,5 +1,6 @@
 package model;
 
+import database.ComplexObject;
 import logic.Service;
 
 import java.util.Calendar;
@@ -9,15 +10,15 @@ import java.util.Scanner;
 
 public class Moterbike implements Service {
 
-    private String name;
-    private String model;
-    private String description;
+    public String moterbikename;
+    public String moterbikemodel;
+    public String description;
 
 
 
 
     public String getName() {
-        return name;
+        return moterbikename;
     }
 
 
@@ -27,18 +28,18 @@ public class Moterbike implements Service {
     }
 
     public String getModel() {
-        return model;
+        return moterbikemodel;
     }
 
 
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String moterbikename) {
+        this.moterbikename = moterbikename;
 
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setModel(String moterbikemodel) {
+        this.moterbikemodel = moterbikemodel;
     }
 
     public void setDescription(String description) {
@@ -98,15 +99,24 @@ public class Moterbike implements Service {
         return null;
     }
 
-    public HashMap<String, String> moterdata = new HashMap<>();
+    HashMap<String, ComplexObject> Moterbikeinformation = new HashMap<String, ComplexObject>();
 
-    public void addInMap(String name, String model) {
+    public void addInMap (String moterbikename, ComplexObject moterbikemodel) {
 
-        if (moterdata == null) {
-            moterdata = new HashMap<String, String>();
-            moterdata.put(name, model);
+        if (Moterbikeinformation == null) {
 
-            return;
+            Moterbikeinformation = new HashMap<String, ComplexObject>();
 
         }
-    }}
+
+        Moterbikeinformation.put(moterbikename,moterbikemodel);
+
+
+    }
+
+
+    public HashMap<String, ComplexObject> getMoterbikeinformation() {
+        return Moterbikeinformation;
+    }
+
+}

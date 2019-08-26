@@ -1,12 +1,15 @@
 package model;
 
 
+import database.CUSTdatabase;
+import database.ComplexObject;
+
 import java.util.HashMap;
 
 public class Customer {
 
-    private  String cusname;
-    private String cusnumber;
+    public String cusname;
+    public String cusnumber;
 
 
     public String getCusname() {
@@ -26,15 +29,26 @@ public class Customer {
         return cusnumber;
     }
 
-    public HashMap<String, String> customer = new HashMap<>();
 
-    public void addInMap(String cusname, String cusnumber) {
+    HashMap<String, ComplexObject> customer = new HashMap<String, ComplexObject>();
+
+    public void addInMap (String cusnumber, ComplexObject cusname) {
 
         if (customer == null) {
-            customer = new HashMap<String, String>();
-            customer.put(cusname, cusnumber);
 
-            return;
-        }
-    }}
+            customer = new HashMap<String, ComplexObject>();
+
+                            }
+
+        customer.put(cusnumber,cusname);
+
+
+    }
+
+
+    public HashMap<String, ComplexObject> getCustomer() {
+        return customer;
+    }
+
+}
 

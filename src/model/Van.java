@@ -1,5 +1,6 @@
 package model;
 
+import database.ComplexObject;
 import logic.Service;
 
 import java.util.Calendar;
@@ -9,15 +10,15 @@ import java.util.Scanner;
 
 public class Van implements Service {
 
-    private String name;
-    private String model;
-    private String description;
+    public String vanname;
+    public String vanmodel;
+    public String description;
 
 
 
 
     public String getName() {
-        return name;
+        return vanname;
     }
 
 
@@ -27,18 +28,18 @@ public class Van implements Service {
     }
 
     public String getModel() {
-        return model;
+        return vanmodel;
     }
 
 
 
     public void setName(String name) {
-        this.name = name;
+        this.vanname = name;
 
     }
 
     public void setModel(String model) {
-        this.model = model;
+        this.vanmodel = model;
     }
 
     public void setDescription(String description) {
@@ -99,15 +100,24 @@ public class Van implements Service {
         return null;
     }
 
-    public HashMap<String, String> vandata = new HashMap<>();
+    HashMap<String, ComplexObject> Vaninformation = new HashMap<String, ComplexObject>();
 
-    public void addInMap(String name, String model) {
+    public void addInMap (String vanname, ComplexObject vanmodel) {
 
-        if (vandata == null) {
-            vandata = new HashMap<String, String>();
-            vandata.put(name, model);
+        if (Vaninformation == null) {
 
-            return;
+            Vaninformation = new HashMap<String, ComplexObject>();
 
         }
-}}
+
+        Vaninformation.put(vanname,vanmodel);
+
+
+    }
+
+
+    public HashMap<String, ComplexObject> getVaninformation() {
+        return Vaninformation;
+    }
+
+}

@@ -1,6 +1,7 @@
 
 import com.sun.xml.internal.ws.api.message.HeaderList;
 //import database.CUSTdatabase;
+import database.ComplexObject;
 import logic.Service;
 import model.Car;
 import model.Customer;
@@ -23,7 +24,6 @@ public class MainClass {
         Customer obj = new Customer();
 
 
-
         Scanner myObj = new Scanner(System.in);
 
         System.out.println("Enter Customer name:");
@@ -33,14 +33,22 @@ public class MainClass {
         String cusname = myObj.nextLine();
         String cusnumber = myObj.nextLine();
 
-
         obj.setCusnumber(cusnumber);
         obj.setCusname(cusname);
-        obj.customer.put(cusname,cusnumber); //storing values in Hashmap
+
+
+        ComplexObject add=new ComplexObject();
+
+        add.cusname=cusname;
+        add.cusnumber=cusnumber;
+
+
+        obj.addInMap(cusnumber,add);
+        obj.addInMap(cusname,add);
+
 
         System.out.println("Your Name is: " + obj.getCusname() + "\n" + "Your ID is  : " + obj.getCusnumber());
         System.out.println("**************************");
-
 
 
         System.out.println("THIS SERVICE CENTER HAS BELOW SERVICES:" + "\n" + "************************************" + "\n" + "1. CAR SERVICE" + "\n" + "2. MOTERBIKE SERVICE" + "\n" + "3. VAN SERVICE" + "\n" + "4. HISTORY" + "\n" + "5. EXIT" + "\n" + "************************************" + "\n" + "\n" +
@@ -62,20 +70,34 @@ public class MainClass {
                     System.out.println("Enter Car Model:");
                     System.out.println("Problem Description:");
 
-                    String name = myObj.nextLine();
-                    String model = myObj.nextLine();
+                    String carname = myObj.nextLine();
+                    String carmodel = myObj.nextLine();
                     String descriptioncar = myObj.nextLine();
                     String date1 = myObj.nextLine();
 
-                    objcar.setName(name);
-                    objcar.setModel(model);
+
+
+                    objcar.setName(carname);
+                    objcar.setModel(carmodel);
                     objcar.setDescription(descriptioncar);
 
 
+                    ComplexObject addcar=new ComplexObject();
 
-                   objcar.cardata.put(name,model); //storing values in Hashmap
+                    addcar.carname=carname;
+                    addcar.carmodel=carmodel;
 
-                    System.out.println("Record Stored!"+"Name:"+objcar.cardata);
+                    obj.addInMap(carname,add);
+                    obj.addInMap(carmodel,add);
+
+                   objcar.getCarinformation() ;//storing values in Hashmap
+
+
+
+                   // System.out.println("Record Stored!"+"Name:"+objcar.getName());
+
+                    System.out.println("Record Stored!");
+                   // System.out.println("Model number is!"+objcar.getCarinformation());
 
                     System.out.println("Service Entry Recorded on:");
                     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss" + "\n" + "***********************");
@@ -103,12 +125,26 @@ public class MainClass {
                     String descriptionmoter = myObj.nextLine();
                     String datemoter = myObj.nextLine();
 
+
+
                     objmoter.setName(moterbikename);
                     objmoter.setModel(moterbikemodel);
+                    objmoter.getModel();
                     objmoter.setDescription(descriptionmoter);
 
-                    objmoter.moterdata.put(moterbikename,moterbikemodel);
-                    System.out.println("Record Stored!"+objmoter.moterdata );
+
+                    ComplexObject addmoterbike=new ComplexObject();
+
+                    addmoterbike.moterbikename=moterbikename;
+                    addmoterbike.moterbikemodel=moterbikename;
+
+                    obj.addInMap(moterbikename,add);
+                    obj.addInMap(moterbikemodel,add);
+
+
+                   // objmoter.moterdata.put(moterbikename,moterbikemodel);
+                    System.out.println("Record Stored!");
+                    System.out.println("Model number is!"+objmoter.getModel());
 
                     System.out.println("Service Entry Recorded on:");
                     DateFormat dateFormat1 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss" + "\n" + "***********************");
@@ -141,8 +177,16 @@ public class MainClass {
                     objvan.setModel(vanmodel);
                     objvan.setDescription(descriptionvan);
 
-                    objvan.vandata.put(vanname,vanmodel);
-                    System.out.println("Record Stored!"+objvan.vandata);
+                    ComplexObject addvan=new ComplexObject();
+
+                    addvan.vanname=vanname;
+                    addvan.vanmodel=vanmodel;
+
+                    obj.addInMap(vanname,add);
+                    obj.addInMap(vanmodel,add);
+
+                    objvan.getVaninformation();
+                    System.out.println("Record Stored!"+objvan.vanmodel);
 
                     System.out.println("Service Entry Recorded on:");
                     DateFormat dateFormat2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss" + "\n" + "***********************");
@@ -161,9 +205,18 @@ public class MainClass {
                 case 4:
 
                     System.out.println("CUSTOMER DATA HISTORY " + "\n" + "-----------------------");
-                    System.out.println(obj.customer);
-                    Car objcar1=new Car();
-                    System.out.println(objcar1.cardata);
+                    System.out.println(obj.getCustomer());
+                    ComplexObject addcar1=new ComplexObject();
+                    System.out.println(addcar1.carname+addcar1.carmodel);
+                    ComplexObject addmoterbike1=new ComplexObject();
+                    System.out.println(addcar1.moterbikemodel);
+
+                    ComplexObject addvan1=new ComplexObject();
+                    System.out.println(addvan1.vanmodel);
+
+
+                   // System.out.println(objcar1.cardata);
+
                     //System.out.println(objcar1.getModel());
 
                     break;
