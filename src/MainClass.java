@@ -1,15 +1,11 @@
 
-import com.sun.xml.internal.ws.api.message.HeaderList;
 //import database.CUSTdatabase;
-import database.ComplexObject;
-import logic.Service;
-import model.Car;
+import database.DatabaseClass;
+        import model.Car;
 import model.Customer;
 import model.Moterbike;
 import model.Van;
 
-import javax.xml.crypto.Data;
-import java.sql.SQLOutput;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -21,34 +17,25 @@ public class MainClass {
 
         System.out.println("WELCOME TO SERVICE CENTER ");
 
-        Customer obj = new Customer();
+        DatabaseClass myDatabse = new DatabaseClass();  // create object for Database class
 
-
-        Scanner myObj = new Scanner(System.in);
+        Customer customer = new Customer();            // create object for Customer class
+        Scanner commandLineScanner = new Scanner(System.in);
 
         System.out.println("Enter Customer name:");
+        String cusname = commandLineScanner.nextLine();
+
         System.out.println("Enter Customer ID:");
+        String cusnumber = commandLineScanner.nextLine();
 
-        // String input
-        String cusname = myObj.nextLine();
-        String cusnumber = myObj.nextLine();
-
-        obj.setCusnumber(cusnumber);
-        obj.setCusname(cusname);
+        customer.setCusnumber(cusnumber);        //Input value set using setCustomer method
+        customer.setCusname(cusname);            //Input value set using setCustomer method
 
 
-        ComplexObject add=new ComplexObject();
+         myDatabse.addCustomer(customer);  // value stored in Customer database using addCustomer method.
 
-        add.cusname=cusname;
-        add.cusnumber=cusnumber;
-
-
-        obj.addInMap(cusnumber,add);
-        obj.addInMap(cusname,add);
-
-
-        System.out.println("Your Name is: " + obj.getCusname() + "\n" + "Your ID is  : " + obj.getCusnumber());
-        System.out.println("**************************");
+        System.out.println("Your Name is: " + customer.getCusname() + "\n" + "Your ID is  : " + customer.getCusnumber());
+        System.out.println("**************************");       // displaying customer name and number
 
 
         System.out.println("THIS SERVICE CENTER HAS BELOW SERVICES:" + "\n" + "************************************" + "\n" + "1. CAR SERVICE" + "\n" + "2. MOTERBIKE SERVICE" + "\n" + "3. VAN SERVICE" + "\n" + "4. HISTORY" + "\n" + "5. EXIT" + "\n" + "************************************" + "\n" + "\n" +
@@ -58,94 +45,73 @@ public class MainClass {
         do {
 
 
-            option = myObj.nextInt();
+            option = commandLineScanner.nextInt();
 
             switch (option) {
                 case 1:
                     System.out.println("WELCOME TO CAR SERVICE!" + "\n" + "-----------------------");
 
 
-                    Car objcar = new Car();
+                    Car car = new Car();     //create object for Car class
                     System.out.println("Enter Car Name:");
-                    System.out.println("Enter Car Model:");
+
+                    commandLineScanner.nextLine();
+                    String carname = commandLineScanner.nextLine();
+
+                    System.out.println("Enter Car Model number:");
+                    String carmodel = commandLineScanner.nextLine();
                     System.out.println("Problem Description:");
-
-                    String carname = myObj.nextLine();
-                    String carmodel = myObj.nextLine();
-                    String descriptioncar = myObj.nextLine();
-                    String date1 = myObj.nextLine();
+                    String descriptioncar = commandLineScanner.nextLine();
 
 
 
-                    objcar.setName(carname);
-                    objcar.setModel(carmodel);
-                    objcar.setDescription(descriptioncar);
+                    car.setCarname(carname);  // values of car stored using setmethod
+                    car.setCarmodel(carmodel);
+                    car.setDescription(descriptioncar);
 
+                    myDatabse.addCar(car); // Values of car is stored in database
 
-                    ComplexObject addcar=new ComplexObject();
-
-                    addcar.carname=carname;
-                    addcar.carmodel=carmodel;
-
-                    obj.addInMap(carname,add);
-                    obj.addInMap(carmodel,add);
-
-                   objcar.getCarinformation() ;//storing values in Hashmap
-
-
-
-                   // System.out.println("Record Stored!"+"Name:"+objcar.getName());
 
                     System.out.println("Record Stored!");
-                   // System.out.println("Model number is!"+objcar.getCarinformation());
 
                     System.out.println("Service Entry Recorded on:");
-                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss" + "\n" + "***********************");
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss" + "\n" + "***********************"); // display system data
                     Date date = new Date();
                     System.out.println(dateFormat.format(date));
 
 
-                    Car objcarservice = new Car();
-                    objcarservice.discount();
-                    objcarservice.calculatecost();
-                    objcarservice.display();
-                    objcarservice.expecteddeliverydate();
+                    Car objcarservice = new Car(); //object created for Interface
+                    objcarservice.discount(); // using interface object calling method
+                    objcarservice.calculatecost(); // using interface object calling method
+                    objcarservice.display(); // using interface object calling method
+                    objcarservice.expecteddeliverydate(); // using interface object calling method
 
                     break;
 
                 case 2:
                     System.out.println("WELCOME TO MOTERBIKE SERVICE!" + "\n" + "-----------------------");
-                    Moterbike objmoter = new Moterbike();
+                    Moterbike moter = new Moterbike();
+
                     System.out.println("Enter Moterbike Name:");
-                    System.out.println("Enter Moterbike Model :");
+
+                    commandLineScanner.nextLine();
+                    String moterbikename = commandLineScanner.nextLine();
+
+                    System.out.println("Enter Moterbike Model number :");
+                    String moterbikemodel = commandLineScanner.nextLine();
+
                     System.out.println("Problem Description:");
-                    //System.out.println("Date of Service:");
-                    String moterbikename = myObj.nextLine();
-                    String moterbikemodel = myObj.nextLine();
-                    String descriptionmoter = myObj.nextLine();
-                    String datemoter = myObj.nextLine();
+                    String descriptionmoter = commandLineScanner.nextLine();
 
 
+                    moter.setMoterbikeName(moterbikename);
+                    moter.setMoterbikeModel(moterbikemodel);
+                    moter.setDescription(descriptionmoter);
 
-                    objmoter.setName(moterbikename);
-                    objmoter.setModel(moterbikemodel);
-                    objmoter.getModel();
-                    objmoter.setDescription(descriptionmoter);
-
-
-                    ComplexObject addmoterbike=new ComplexObject();
-
-                    addmoterbike.moterbikename=moterbikename;
-                    addmoterbike.moterbikemodel=moterbikename;
-
-                    obj.addInMap(moterbikename,add);
-                    obj.addInMap(moterbikemodel,add);
+                    myDatabse.addMoterbike(moter);
 
 
-                   // objmoter.moterdata.put(moterbikename,moterbikemodel);
                     System.out.println("Record Stored!");
-                    System.out.println("Model number is!"+objmoter.getModel());
-
                     System.out.println("Service Entry Recorded on:");
                     DateFormat dateFormat1 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss" + "\n" + "***********************");
                     Date date2 = new Date();
@@ -163,30 +129,28 @@ public class MainClass {
 
                 case 3:
                     System.out.println("WELCOME TO VAN SERVICE!" + "\n" + "-----------------------");
-                    Van objvan = new Van();
                     System.out.println("Enter Van Name:");
-                    System.out.println("Enter Van Model :");
+
+                    commandLineScanner.nextLine();
+                    String vanname = commandLineScanner.nextLine();
+
+
+                    System.out.println("Enter Van Model number :");
+                    String vanmodel = commandLineScanner.nextLine();
+
                     System.out.println("Problem Description");
-                    // System.out.println("Date of Service:");
-                    String vanname = myObj.nextLine();
-                    String vanmodel = myObj.nextLine();
-                    String descriptionvan = myObj.nextLine();
-                    String datevan = myObj.nextLine();
+                    String descriptionvan = commandLineScanner.nextLine();
 
-                    objvan.setName(vanname);
-                    objvan.setModel(vanmodel);
-                    objvan.setDescription(descriptionvan);
 
-                    ComplexObject addvan=new ComplexObject();
+                    Van van = new Van();
+                    van.setVanname(vanname);
+                    van.setVanmodel(vanmodel);
+                    van.setVandescription(descriptionvan);
 
-                    addvan.vanname=vanname;
-                    addvan.vanmodel=vanmodel;
 
-                    obj.addInMap(vanname,add);
-                    obj.addInMap(vanmodel,add);
+                    myDatabse.addVan(van);
 
-                    objvan.getVaninformation();
-                    System.out.println("Record Stored!"+objvan.vanmodel);
+
 
                     System.out.println("Service Entry Recorded on:");
                     DateFormat dateFormat2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss" + "\n" + "***********************");
@@ -205,19 +169,33 @@ public class MainClass {
                 case 4:
 
                     System.out.println("CUSTOMER DATA HISTORY " + "\n" + "-----------------------");
-                    System.out.println(obj.getCustomer());
-                    ComplexObject addcar1=new ComplexObject();
-                    System.out.println(addcar1.carname+addcar1.carmodel);
-                    ComplexObject addmoterbike1=new ComplexObject();
-                    System.out.println(addcar1.moterbikemodel);
 
-                    ComplexObject addvan1=new ComplexObject();
-                    System.out.println(addvan1.vanmodel);
+                    Map<String, Customer> customerData = myDatabse.getCustomerData();
+                    for ( String key : customerData.keySet()){
+                        Customer d = customerData.get(key);
+                        System.out.println(String.format("Customer name: %s, Customer number: %s", d.getCusname(), d.getCusnumber()));
 
+                    }
 
-                   // System.out.println(objcar1.cardata);
+                    Map<String, Car> carData=myDatabse.getCarData();
+                    for(String key: carData.keySet()){
+                        Car c=carData.get(key);
+                        System.out.println(String.format("Car name: %s, Car Model number: %s", c.getCarname(), c.getCarmodel()));
+                    }
 
-                    //System.out.println(objcar1.getModel());
+                    Map<String,Moterbike> moterbikeData=myDatabse.getMoterbikepData();
+
+                    for(String key: moterbikeData.keySet()){
+                        Moterbike b = moterbikeData.get(key);
+                        System.out.println(String.format("Moterbike name: %s,  Moterbike Model number: %s", b.getMoterbikeName(), b.getMoterbikeModel()));
+                    }
+
+                    Map<String,Van> vanData=myDatabse.getVanData();
+
+                    for(String key: vanData.keySet()){
+                        Van v=vanData.get(key);
+                        System.out.println(String.format("Van name: %s, Van model number: %s", v.getVanname(), v.getVanmodel()));
+                    }
 
                     break;
 
@@ -230,7 +208,7 @@ public class MainClass {
             }
 
             System.out.println("Would you like to add a new CUSTOMER?  Type YES or NO: ");
-            String b = myObj.next();
+            String b = commandLineScanner.next();
 
 
             if (b.equalsIgnoreCase("yes")) {
