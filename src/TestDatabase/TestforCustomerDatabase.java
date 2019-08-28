@@ -12,41 +12,47 @@ public class TestforCustomerDatabase extends Customer {
 
         DatabaseClass myDatabse = new DatabaseClass();  // create object for Database class
 
-        Customer customer = new Customer();
-        customer.setCusname("Joseph");
-        customer.setCusnumber("4787878");
-        myDatabse.addCustomer(customer);
+        Scanner commandLineScanner = new Scanner(System.in);
+        System.out.println("Welcome To Customer Database!");
+        System.out.println("How many customer you would like to add in the Database:");
 
-        Customer customer1 = new Customer();
-        customer1.setCusname("Jose");
-        customer1.setCusnumber("4787338");
-        myDatabse.addCustomer(customer1);
+        int num=commandLineScanner.nextInt();
+        commandLineScanner.nextLine();
+        for(int i = 0; i<num; i++ ){
 
-        Customer customer2 = new Customer();
-        customer2.setCusname("Meghna");
-        customer2.setCusnumber("4755548");
-        myDatabse.addCustomer(customer2);
+            Customer customer = new Customer();            // create object for Customer class
 
-        System.out.println("Existing Data Base!");
+            System.out.println("Enter Customer Name:");
+            String cusname = commandLineScanner.nextLine();
+
+            System.out.println("Enter Customer ID:");
+            String cusnumber = commandLineScanner.nextLine();
+
+            customer.setCusnumber(cusnumber);        //Input value set using setCustomer method
+            customer.setCusname(cusname);
+            myDatabse.addCustomer(customer);
+        }
+
+        System.out.println("Present Data Base is !");
 
         Map<String, Customer> customerData = myDatabse.getCustomerData();
         for (String key : customerData.keySet()) {
             Customer c = customerData.get(key);
-            System.out.println(String.format("Customer name: %s, Customer Model number: %s", c.getCusname(), c.getCusnumber()));// printing carname name and carnumber
+            System.out.println(String.format("Customer Name: %s, Customer ID: %s", c.getCusname(), c.getCusnumber()));// printing carname name and carnumber
         }
-        Scanner commandLineScanner = new Scanner(System.in);
-        System.out.println("Enter customer id: ");
+
+        System.out.println("Enter customer ID that you want to delete: ");
 
         String modelNumberToDelete = commandLineScanner.nextLine();
 
         myDatabse.deleteCustomerByModelNumber(modelNumberToDelete);
 
-        System.out.println("Deleted Customer!");
+        System.out.println("Selected Customer is deleted!");
 
-        System.out.println("Updated Data Base!");
+        System.out.println("Updated Database is!");
         for (String key : customerData.keySet()) {
             Customer c = customerData.get(key);
-            System.out.println(String.format("Customer name: %s, Customer Model number: %s", c.getCusname(), c.getCusnumber()));
+            System.out.println(String.format("Customer Name: %s, Customer ID: %s", c.getCusname(), c.getCusnumber()));
         }
     }
     public static void objectcreationForCarUpdate() {
@@ -65,7 +71,7 @@ public class TestforCustomerDatabase extends Customer {
 
         for(String key:customerData.keySet()){
             Customer c=customerData.get(key);
-            System.out.println(String.format("Customer name: %s, Customer Model number: %s", c.getCusname(), c.getCusnumber()));
+            System.out.println(String.format("Customer name: %s, Customer ID: %s", c.getCusname(), c.getCusnumber()));
         }
 
         Scanner commandLineScanner = new Scanner(System.in);
@@ -86,9 +92,9 @@ public class TestforCustomerDatabase extends Customer {
     }
 
     public static void main(String[] args) {
-            //objectcreationForCarDeletion();
+           // objectcreationForCarDeletion();
 
-           //objectcreationForCarUpdate();
+           objectcreationForCarUpdate();
 
     }
 }

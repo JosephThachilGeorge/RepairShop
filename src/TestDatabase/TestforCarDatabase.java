@@ -13,8 +13,9 @@ public class TestforCarDatabase extends Car {
     public static void objectcreationForCarDeletion() {
 
         DatabaseClass myDatabse = new DatabaseClass();
+        Scanner commandLineScanner = new Scanner(System.in);
 
-         Car car = new Car();
+        Car car = new Car();
          car.setCarmodel("TataSmall");
          car.setCarname("Tataelxi");
          car.setDescription("This has wheel proplem");
@@ -40,7 +41,7 @@ public class TestforCarDatabase extends Car {
 
         }
 
-        Scanner commandLineScanner = new Scanner(System.in);
+        //Scanner commandLineScanner = new Scanner(System.in);
 
         System.out.println("Would you like to delete first row car Data?  Type YES or NO: ");
 
@@ -107,7 +108,7 @@ public class TestforCarDatabase extends Car {
 
     public static void main(String[] args) {
 
-        //objectcreationForCarDeletion();
+        objectcreationForCarDeletion();
         //objectcreationForCarUpdate();
 
     }
