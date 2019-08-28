@@ -6,19 +6,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Van implements Service {
+public class Van implements Service {          //created class van with 3 instance varriabele.
 
     public String vanname;
     public String vanmodel;
     public String vandescription;
 
 
-
-
     public String getVanname() {
         return vanname;
     }
-
 
 
     public String getVandescription() {
@@ -28,7 +25,6 @@ public class Van implements Service {
     public String getVanmodel() {
         return vanmodel;
     }
-
 
 
     public void setVanname(String name) {
@@ -48,12 +44,12 @@ public class Van implements Service {
 
     @Override
     public Void display() {
-        System.out.println("Your Van will be delivered with in two days!");
+        System.out.println("Your Van will be delivered with in two days!"); //Overide interface method
         return null;
     }
 
     @Override
-    public Void calculatecost() {
+    public Void calculatecost() { //Overide interface method
 
         int mancost =40;
         int hours=4;
@@ -65,7 +61,7 @@ public class Van implements Service {
     }
 
     @Override
-    public Void expecteddeliverydate() {
+    public Void expecteddeliverydate() { //Overide interface method
 
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, 2);
@@ -74,11 +70,10 @@ public class Van implements Service {
         return null;
 
 
-
     }
 
     @Override
-    public Void discount() {
+    public Void discount() { //Overide interface method
 
         Scanner myObj = new Scanner(System.in);
 
@@ -97,7 +92,6 @@ public class Van implements Service {
 
         return null;
     }
-
 
 
 }

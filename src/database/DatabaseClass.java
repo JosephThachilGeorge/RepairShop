@@ -33,13 +33,19 @@ public class DatabaseClass {
     }
 
     public void deleteCustomer(Customer customer) {
-        if (customerMap.containsKey(customer.getCusnumber())) {
-            customerMap.remove(customer.getCusnumber(), customer);
-
-        } else
-
-          return;
+        this.deleteCustomerByModelNumber(customer.getCusnumber());
     }
+
+    public void deleteCustomerByModelNumber(String customerNumber){
+        if (customerMap.containsKey(customerNumber)) {
+            customerMap.remove(customerNumber);
+        } else{
+            System.out.println("Customer not is present");
+        }
+
+        return;
+    }
+
 
     public Map<String, Customer> getCustomerData() {
         return customerMap;
@@ -56,19 +62,21 @@ public class DatabaseClass {
     }
 
     public void updateCar(Car car) {
-        if (customerMap.containsKey(car.getCarmodel())) {
+        if (carMap.containsKey(car.getCarmodel())) {
             carMap.put(car.getCarmodel(), car);
+
         } else {
-            System.out.println("car not is present");
+
+            System.out.println("car is not present");
         }
 
     }
 
     public void deleteCar(Car car) {
         if (carMap.containsKey(car.getCarmodel())) {
-             carMap.remove(car.getCarmodel(), car);
+             carMap.remove(car.getCarmodel());
         } else
-        return;
+            return;
     }
 
     public Map<String, Car> getCarData() {
@@ -90,9 +98,7 @@ public class DatabaseClass {
 
         if(motorbikeMap.containsKey(moterbike.getMoterbikeModel())){
             motorbikeMap.put(moterbike.getMoterbikeModel(),moterbike);
-            } else
-
-        {
+        } else {
             System.out.println("Moterbike not is present");
         }
     }
@@ -101,11 +107,10 @@ public class DatabaseClass {
 
         if(motorbikeMap.containsKey(moterbike.getMoterbikeModel())){
 
-            motorbikeMap.remove(moterbike.getMoterbikeModel(),moterbike);
-        }
-
-        else
+            motorbikeMap.remove(moterbike.getMoterbikeModel());
+        } else {
             return;
+        }
     }
 
     public Map<String, Moterbike> getMoterbikepData() {
@@ -131,21 +136,19 @@ public class DatabaseClass {
             System.out.println("Van is not present");
         }
 
-        }
+    }
 
 
     public void deleteVan(Van van) {
         if (vanMap.containsKey(van.getVanmodel())) {
-            vanMap.remove(van.getVanmodel(), van);
+            vanMap.remove(van.getVanmodel());
 
-        } else
-
+        } else {
             return;
+        }
     }
 
     public Map<String, Van> getVanData() {
         return vanMap;
-
-
- }
+    }
 }
