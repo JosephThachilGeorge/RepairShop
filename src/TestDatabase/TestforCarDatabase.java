@@ -15,7 +15,7 @@ public class TestforCarDatabase extends Car {
         DatabaseClass myDatabse = new DatabaseClass();
         Scanner commandLineScanner = new Scanner(System.in);
 
-        Car car = new Car();
+         Car car = new Car();
          car.setCarmodel("TataSmall");
          car.setCarname("Tataelxi");
          car.setDescription("This has wheel proplem");
@@ -108,7 +108,7 @@ public class TestforCarDatabase extends Car {
 
     public static void main(String[] args) {
 
-        objectcreationForCarDeletion();
+       // objectcreationForCarDeletion();
         //objectcreationForCarUpdate();
 
     }

@@ -57,44 +57,66 @@ public class TestforCustomerDatabase extends Customer {
     }
     public static void objectcreationForCarUpdate() {
 
-        DatabaseClass updatedatabase=new DatabaseClass();
+        DatabaseClass myDatabse = new DatabaseClass();
+        Scanner commandLineScanner = new Scanner(System.in);
+        System.out.println("Welcome To Customer Database!");
+        System.out.println("How many customer you would like to add in the Database:");
 
-        Customer customer=new Customer();
-        customer.setCusname("Joseph");
-        customer.setCusnumber("4578");
+        int num=commandLineScanner.nextInt();
+        commandLineScanner.nextLine();
 
-        updatedatabase.addCustomer(customer);
+        for(int i = 0; i<num; i++ ){
+            Customer customer = new Customer();            // create object for Customer class
+            System.out.println("Enter Customer Name:");
+            String cusname = commandLineScanner.nextLine();
+            System.out.println("Enter Customer ID:");
+            String cusnumber = commandLineScanner.nextLine();
+
+            customer.setCusnumber(cusnumber);        //Input value set using setCustomer method
+            customer.setCusname(cusname);
+            myDatabse.addCustomer(customer);
+        }
 
         System.out.println("Existing Database!");
 
-        Map<String, Customer> customerData=updatedatabase.getCustomerData();
+        Map<String, Customer> customerData=myDatabse.getCustomerData();
 
         for(String key:customerData.keySet()){
             Customer c=customerData.get(key);
             System.out.println(String.format("Customer name: %s, Customer ID: %s", c.getCusname(), c.getCusnumber()));
         }
+        Customer customer = new Customer();
 
-        Scanner commandLineScanner = new Scanner(System.in);
+        System.out.println("Enter the Customer ID that that you want to Update:");
+        String cusnumber = commandLineScanner.nextLine();
+        System.out.println("Enter the new Customer name that you want to add in the Database ");
+        String cusname = commandLineScanner.nextLine();
 
-        System.out.println("Enter new name for a Customer:");
-        String name = commandLineScanner.nextLine();
+        if (myDatabse.getCustomerData().containsKey(cusnumber))
+        {
+            customer.setCusname(cusname);
+            customer.setCusnumber(cusnumber);
+            myDatabse.updateCustomer(customer);
+        }
 
-        customer.setCusname(name);
-
-        updatedatabase.updateCustomer(customer);
+        Customer customerInMap = myDatabse.getCustomerData().get(cusnumber);
+        if(customerInMap != null){
+            customerInMap.setCusname(cusname);
+            myDatabse.updateCustomer(customerInMap);
+        }
 
         System.out.println("Updated Database:");
 
         for (String key : customerData.keySet()) { // using for loop checking the key
             Customer c = customerData.get(key);
-            System.out.println(String.format("Car name: %s, Car Model number: %s", c.getCusname(), c.getCusnumber()));// printing carname name and carnumber
+            System.out.println(String.format("Customer Name: %s, Customer ID: %s", c.getCusname(), c.getCusnumber()));// printing carname name and carnumber
         }
     }
 
     public static void main(String[] args) {
-           // objectcreationForCarDeletion();
+          //  objectcreationForCarDeletion();
 
-           objectcreationForCarUpdate();
+         //  objectcreationForCarUpdate();
 
     }
 }

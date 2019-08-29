@@ -24,11 +24,12 @@ public class DatabaseClass {
         customerMap.put(customer.getCusnumber(), customer);
     }
 
-    public void updateCustomer(Customer customer) {
+
+      public void updateCustomer(Customer customer) {
         if (customerMap.containsKey(customer.getCusnumber())) {
             customerMap.put(customer.getCusnumber(), customer);
         } else {
-            System.out.println("Customer not is present");
+            System.out.println("Customer is not present");
         }
     }
 
@@ -40,7 +41,7 @@ public class DatabaseClass {
         if (customerMap.containsKey(customerNumber)) {
             customerMap.remove(customerNumber);
         } else{
-            System.out.println("Customer not is present");
+            System.out.println("Customer is not present");
         }
 
         return;
