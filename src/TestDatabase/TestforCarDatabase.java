@@ -13,103 +13,128 @@ public class TestforCarDatabase extends Car {
     public static void objectcreationForCarDeletion() {
 
         DatabaseClass myDatabse = new DatabaseClass();
+
         Scanner commandLineScanner = new Scanner(System.in);
+        System.out.println("Welcome To CAR Database!");
+        System.out.println("How many car details you would like to add in the Database:");
 
-         Car car = new Car();
-         car.setCarmodel("TataSmall");
-         car.setCarname("Tataelxi");
-         car.setDescription("This has wheel proplem");
-         myDatabse.addCar(car);
+        int num=commandLineScanner.nextInt();
+        commandLineScanner.nextLine();
+        for(int i = 0; i<num; i++ ){
 
-        Car car1 = new Car();
-        car1.setCarmodel("Tata1medium");
-        car1.setCarname("Tataelxi");
-        car1.setDescription("This has wheel proplem");
-        myDatabse.addCar(car1);
+            Car car = new Car();            // create object for Car class
 
-        Car car2 = new Car();
-        car2.setCarmodel("Tatalarge");
-        car2.setCarname("Tataelxi");
-        car2.setDescription("This has wheel proplem");
-        myDatabse.addCar(car2);
+            System.out.println("Enter CAR Name:");
+            String carname = commandLineScanner.nextLine();
+
+            System.out.println("Enter CAR Model Number:");
+            String carmodel = commandLineScanner.nextLine();
+
+            System.out.println("Enter CAR Problem Description:");
+            String description=commandLineScanner.nextLine();
+
+            car.setCarmodel(carmodel);        //Input value set using seCar method
+            car.setCarname(carname);
+            car.setDescription(description);
+            myDatabse.addCar(car);
+        }
 
         System.out.println("Existing Data Base!");
         Map<String, Car> carData = myDatabse.getCarData(); // for printing carname name and carnumber
         for (String key : carData.keySet()) { // using for loop checking the key
             Car c = carData.get(key);
-            System.out.println(String.format("Car name: %s, Car Model number: %s", c.getCarname(), c.getCarmodel()));// printing carname name and carnumber
+            System.out.println(String.format("Car name: %s, Car Model number: %s,Car description: %s",  c.getCarname(), c.getCarmodel(),c.getDescription()));// printing carname name and carnumber
 
         }
+        System.out.println("Enter CAR model number that you want to delete: ");
 
-        //Scanner commandLineScanner = new Scanner(System.in);
+        String modelNumberToDelete = commandLineScanner.nextLine();
 
-        System.out.println("Would you like to delete first row car Data?  Type YES or NO: ");
+        myDatabse.deleteCarByModelNumber(modelNumberToDelete);
 
-        String b = commandLineScanner.next();
+        System.out.println("Selected CAR is deleted!");
 
-        if (b.equalsIgnoreCase("yes")) {
+        System.out.println("Updated Database is!");
+        for (String key : carData.keySet()) {
+        Car c = carData.get(key);
+        System.out.println(String.format("Car name: %s, Car Model number: %s,Car description: %s",  c.getCarname(), c.getCarmodel(),c.getDescription()));
 
-            myDatabse.deleteCar(car);
-
-            } else if (b.equalsIgnoreCase("no")) {
-
-            System.out.println("Thank You");
-
-        }
-
-        if (!myDatabse.getCarData().containsKey(car.getCarmodel())) {
-            System.out.println("Deleted Requested Car data:");
-        }
-
-        System.out.println("Updated Data Base!");
-        for (String key : carData.keySet()) { // using for loop checking the key
-            Car c = carData.get(key);
-            System.out.println(String.format("Car name: %s, Car Model number: %s", c.getCarname(), c.getCarmodel()));// printing carname name and carnumber
         }
 
     }
 
+
     public static void objectcreationForCarUpdate() {
 
-        DatabaseClass myDatabse1 = new DatabaseClass();
+        DatabaseClass myDatabse = new DatabaseClass();
 
-        Car car = new Car();
-        car.setCarmodel("AltoSmall2");
-        car.setCarname("Altolxi");
-        car.setDescription("This has wheel proplem");
+        Scanner commandLineScanner = new Scanner(System.in);
+        System.out.println("Welcome To CAR Database!");
+        System.out.println("How many car details you would like to add in the Database:");
 
-        myDatabse1.addCar(car);
+        int num = commandLineScanner.nextInt();
+        commandLineScanner.nextLine();
+        for (int i = 0; i < num; i++) {
 
+            Car car = new Car();            // create object for Car class
+
+            System.out.println("Enter CAR Name:");
+            String carname = commandLineScanner.nextLine();
+
+            System.out.println("Enter CAR Model Number:");
+            String carmodel = commandLineScanner.nextLine();
+
+            System.out.println("Enter CAR Problem Description:");
+            String description = commandLineScanner.nextLine();
+
+            car.setCarmodel(carmodel);        //Input value set using seCar method
+            car.setCarname(carname);
+            car.setDescription(description);
+            myDatabse.addCar(car);
+        }
 
         System.out.println("Existing Data Base!");
-
-        Map<String, Car> carData = myDatabse1.getCarData(); // for printing carname name and carnumber
+        Map<String, Car> carData = myDatabse.getCarData(); // for printing carname name and carnumber
         for (String key : carData.keySet()) { // using for loop checking the key
             Car c = carData.get(key);
-            System.out.println(String.format("Car name: %s, Car Model number: %s", c.getCarname(), c.getCarmodel()));// printing carname name and carnumber
+            System.out.println(String.format("Car name: %s, Car Model number: %s,Car description: %s", c.getCarname(), c.getCarmodel(), c.getDescription()));// printing carname name and carnumber
 
         }
-            Scanner commandLineScanner = new Scanner(System.in);
 
-            System.out.println("Enter new name for a car:");
-            String name = commandLineScanner.nextLine();
+        Car car = new Car();
 
-            car.setCarname(name);
+        System.out.println("Enter the CAR model number that you want to Update:");
+        String carnumber = commandLineScanner.nextLine();
+        System.out.println("Enter the new CAR name that you want to add in the Database ");
+        String carname = commandLineScanner.nextLine();
 
-            myDatabse1.updateCar(car);
+        if (myDatabse.getCarData().containsKey(carnumber))
+        {
+            car.setCarname(carname);
+            car.setCarmodel(carnumber);
+            myDatabse.updateCar(car);
+        }
 
-            System.out.println("Updated Database:");
+        Car carInMap = myDatabse.getCarData().get(carnumber);
+        if(carInMap != null){
+            carInMap.setCarname(carname);
+            myDatabse.updateCar(carInMap);
+        }
+
+        System.out.println("Updated Database:");
 
         for (String key : carData.keySet()) { // using for loop checking the key
             Car c = carData.get(key);
-            System.out.println(String.format("Car name: %s, Car Model number: %s", c.getCarname(), c.getCarmodel()));// printing carname name and carnumber
+            System.out.println(String.format("Car name: %s, Car Model number: %s,Car description: %s", c.getCarname(), c.getCarmodel(), c.getDescription()));// printing carname name and carnumber
         }
-        }
+    }
+
+
 
     public static void main(String[] args) {
 
-       // objectcreationForCarDeletion();
-        //objectcreationForCarUpdate();
+        //objectcreationForCarDeletion();
+       // objectcreationForCarUpdate();
 
     }
 }

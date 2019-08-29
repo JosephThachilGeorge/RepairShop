@@ -114,9 +114,9 @@ public class TestforCustomerDatabase extends Customer {
     }
 
     public static void main(String[] args) {
-          //  objectcreationForCarDeletion();
+          // objectcreationForCarDeletion();
 
-         //  objectcreationForCarUpdate();
+           //objectcreationForCarUpdate();
 
     }
 }

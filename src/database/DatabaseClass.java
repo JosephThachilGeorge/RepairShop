@@ -73,13 +73,20 @@ public class DatabaseClass {
 
     }
 
-    public void deleteCar(Car car) {
-        if (carMap.containsKey(car.getCarmodel())) {
-             carMap.remove(car.getCarmodel());
-        } else
-            return;
+    public void deleteCar(Car car) {this.deleteCarByModelNumber(car.getCarmodel());
     }
 
+
+    public void deleteCarByModelNumber(String modelNumber){
+
+        if(carMap.containsKey(modelNumber)){
+            carMap.remove(modelNumber);
+
+        } else{
+            System.out.println("CAR is not present");
+        }
+        return;
+    }
     public Map<String, Car> getCarData() {
         return carMap;
 
